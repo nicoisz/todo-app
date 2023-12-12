@@ -10,13 +10,13 @@ const ModalAddTask = () => {
   const [open, setOpen] = useState(true);
   const cancelButtonRef = useRef(null);
 
-  const { setCurrentTask, setIsOpen } = useContext(TaskContext);
+  const { setTask, setIsOpen } = useContext(TaskContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsOpen(false);
     const task = event.target[0].value;
-    setCurrentTask(task);
+    setTask(task);
     const { name, value } = event.target;
   };
 

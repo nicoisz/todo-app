@@ -1,19 +1,19 @@
 import { createContext, useState } from "react";
 
 export const TaskContext = createContext({
-  currentTask: null,
-  setCurrentTask: () => null,
+  task: null,
+  setTask: () => null,
   isOpen: false,
   setIsOpen: () => false,
 });
 
 export const TaskProvider = ({ children }) => {
-  const [currentTask, setCurrentTask] = useState(null);
+  const [task, setTask] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const value = { currentTask, setCurrentTask, isOpen, setIsOpen };
+  const value = { task, setTask, isOpen, setIsOpen };
 
-  console.log(currentTask);
+  console.log(task, isOpen);
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };

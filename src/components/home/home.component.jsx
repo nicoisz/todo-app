@@ -12,9 +12,6 @@ const Home = () => {
   const handlerClick = (event) => {
     event.preventDefault();
     setIsOpen(true);
-    console.log(isOpen);
-
-    //en el modal que se abre enviar a contexto el cerrar modal y desde aqui capturar ese estado
   };
 
   return (
