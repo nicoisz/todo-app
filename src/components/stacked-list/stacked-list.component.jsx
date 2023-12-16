@@ -1,34 +1,26 @@
 import { useContext } from "react";
 import { TaskContext } from "../../context/task.context";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 
 const StackedList = () => {
   const { setIsOpen, isOpen, task, taskList } = useContext(TaskContext);
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/people")
-      .then((res) => setData(res.data))
-      .catch((err) => console.error(err));
-  }, []);
-
+  console.log(taskList);
   return (
     <ul role="list" className="divide-y divide-gray-100 ">
       {taskList.map((person) => (
-        <li key={person} className="flex justify-evenly gap-x-6 py-5">
+        <li key={person.taskName} className="flex justify-evenly gap-x-6 py-5">
           <div className="flex min-w-0 gap-x-4">
-            <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person} alt="" />
+            <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person.taskName} alt="" />
             <div className="min-w-0 flex-auto">
-              <p className="text-sm font-semibold leading-6 text-gray-900">{person}</p>
-              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{person}</p>
+              <p className="text-sm font-semibold leading-6 text-gray-900">{person.taskName}</p>
+              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{person.taskName}</p>
             </div>
           </div>
           <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-            <p className="text-sm leading-6 text-gray-900">{person.role}</p>
-            {person.lastSeen ? (
+            <p className="text-sm leading-6 text-gray-900">{person.taskName.role}</p>
+            {person.taskName.lastSeen ? (
               <p className="mt-1 text-xs leading-5 text-gray-500">
-                Last seen <time dateTime={person}>{person}</time>
+                Last seen <time dateTime={person.taskName}>{person.taskName}</time>
               </p>
             ) : (
               <div className="mt-1 flex items-center gap-x-1.5">

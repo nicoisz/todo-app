@@ -10,9 +10,7 @@ export const TaskContext = createContext({
 });
 
 export const addTaskToList = (task, taskList) => {
-  taskList.push(task);
-  console.log(taskList);
-  return taskList;
+  return [...taskList, { ...task, id: taskList.length + 1 }];
 };
 
 export const TaskProvider = ({ children }) => {

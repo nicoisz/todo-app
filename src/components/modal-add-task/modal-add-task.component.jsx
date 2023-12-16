@@ -16,8 +16,7 @@ const ModalAddTask = () => {
     event.preventDefault();
     setIsOpen(false);
     const task = event.target[0].value;
-    addTask(task);
-    const { name, value } = event.target;
+    addTask({ taskName: task });
   };
 
   return (
