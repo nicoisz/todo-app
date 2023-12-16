@@ -5,28 +5,41 @@ import { TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
 
 const StackedList = () => {
   const { setIsOpen, isOpen, task, taskList } = useContext(TaskContext);
-  console.log(taskList);
+
+  const handleClick = (id) => {
+    console.log("ja", id);
+  };
   return (
-    <ul role="list" className="divide-y divide-gray-100 ">
-      {taskList.map((person) => (
-        <li key={person.taskName} className="flex justify-evenly gap-x-6 py-5">
+    <ul role="list" className="border-3 z-10 ">
+      {taskList.map((task) => (
+        <li
+          key={task.id}
+          className="flex justify-around gap-x-6 py-5 border border-red-100"
+          onClick={() => handleClick(task.taskId)}
+        >
           <div className="flex min-w-0 gap-x-4">
-            <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person.taskName} alt="" />
             <div className="min-w-0 flex-auto">
-              <p className="text-sm font-semibold leading-6 text-gray-900">{person.taskName}</p>
-              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{person.taskName}</p>
+              <p className="text-sm font-semibold leading-6 text-gray-900">{task.name}</p>
+              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{task.date}</p>
             </div>
           </div>
           <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-            <p className="text-sm leading-6 text-gray-900">{person.taskName.role}</p>
-            {person.taskName.lastSeen ? (
+            <p className="text-sm leading-6 text-gray-900">{task.name.role}</p>
+            {task.name.lastSeen ? (
               <p className="mt-1 text-xs leading-5 text-gray-500">
-                Last seen <time dateTime={person.taskName}>{person.taskName}</time>
+                Last seen <time dateTime={task.name}>{task.name}</time>
               </p>
             ) : (
               <div className="mt-1 flex items-center gap-x-1.5">
-                <PencilIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
-                <TrashIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                  Button
+                </button>
+                <button onClick={() => handleClick(task.taskId)}>
+                  <PencilIcon className="h-6 w-6 text-gray-600" aria-hidden="true" />
+                </button>
+                <button onClick={() => handleClick(task.taskId)}>
+                  <TrashIcon className="h-6 w-6 text-gray-600" aria-hidden="true" />
+                </button>
               </div>
             )}
           </div>

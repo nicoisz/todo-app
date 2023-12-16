@@ -15,10 +15,13 @@ const Home = () => {
   };
 
   return (
-    <div className="p-1 h-full w-full">
+    <div className="w-full">
       <div className="p-4 place-items-center rounded-lg m-14">
-        <div className="button-borders mb-6">
-          <button className="primary-button" onClick={handlerClick}>
+        <div className=" mb-6">
+          <button
+            onClick={handlerClick}
+            className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+          >
             Add Task
           </button>
         </div>

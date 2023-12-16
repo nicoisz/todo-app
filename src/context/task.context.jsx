@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { getCurrentDate } from "../utils/getDate";
 
 export const TaskContext = createContext({
   task: null,
@@ -10,7 +11,7 @@ export const TaskContext = createContext({
 });
 
 export const addTaskToList = (task, taskList) => {
-  return [...taskList, { ...task, id: taskList.length + 1 }];
+  return [...taskList, { ...task, id: taskList.length + 1, date: getCurrentDate() }];
 };
 
 export const TaskProvider = ({ children }) => {
