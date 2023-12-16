@@ -15,7 +15,7 @@ const StackedList = () => {
         <li
           key={task.id}
           className="flex justify-around gap-x-6 py-5 border border-red-100"
-          onClick={() => handleClick(task.taskId)}
+          onClick={() => handleClick(task.id)}
         >
           <div className="flex min-w-0 gap-x-4">
             <div className="min-w-0 flex-auto">
