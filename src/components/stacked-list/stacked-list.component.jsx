@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { TaskContext } from "../../context/task.context";
 import { useState } from "react";
+import { TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
 
 const StackedList = () => {
   const { setIsOpen, isOpen, task, taskList } = useContext(TaskContext);
@@ -24,10 +25,8 @@ const StackedList = () => {
               </p>
             ) : (
               <div className="mt-1 flex items-center gap-x-1.5">
-                <div className="flex-none rounded-full bg-emerald-500/20 p-1">
-                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                </div>
-                <p className="text-xs leading-5 text-gray-500">Online</p>
+                <PencilIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                <TrashIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
               </div>
             )}
           </div>
