@@ -5,16 +5,20 @@ import { TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
 
 const StackedList = () => {
   const { setIsOpen, isOpen, task, taskList } = useContext(TaskContext);
+  const [done, setDone] = useState(false);
 
   const handleClick = (id) => {
-    console.log("ja", id);
+    setDone(!done);
+    console.log(id, done);
   };
   return (
     <ul role="list" className="border-3 z-10 ">
       {taskList.map((task) => (
         <li
           key={task.id}
-          className="flex justify-around gap-x-6 py-5 border border-red-100"
+          className={`flex justify-around gap-x-6 py-5 border   ${
+            done ? "border-red-100 bg-red-300" : "border-green-100 bg-green-300"
+          }`}
           onClick={() => handleClick(task.id)}
         >
           <div className="flex min-w-0 gap-x-4">
