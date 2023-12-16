@@ -4,13 +4,17 @@ import { useState } from "react";
 import { TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
 
 const StackedList = () => {
-  const { setIsOpen, isOpen, task, taskList } = useContext(TaskContext);
+  const { setIsOpen, taskList, removeTask } = useContext(TaskContext);
   const [done, setDone] = useState(false);
 
   const handleClick = (id) => {
     setDone(!done);
-    console.log(id, done);
   };
+
+  const handleClickDelete = (id) => {
+    removeTask(id);
+  };
+
   return (
     <ul role="list" className="border-3 z-10 ">
       {taskList.map((task) => (
@@ -38,10 +42,10 @@ const StackedList = () => {
                 <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                   Button
                 </button>
-                <button onClick={() => handleClick(task.taskId)}>
+                <button onClick={() => handleClick(task.id)}>
                   <PencilIcon className="h-6 w-6 text-gray-600" aria-hidden="true" />
                 </button>
-                <button onClick={() => handleClick(task.taskId)}>
+                <button onClick={() => handleClickDelete(task.id)}>
                   <TrashIcon className="h-6 w-6 text-gray-600" aria-hidden="true" />
                 </button>
               </div>

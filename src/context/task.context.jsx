@@ -14,6 +14,11 @@ export const addTaskToList = (task, taskList) => {
   return [...taskList, { ...task, id: taskList.length + 1, date: getCurrentDate() }];
 };
 
+export const removeTaskToList = (id, taskList) => {
+  const newTaskList = taskList.filter((el) => el.id != id);
+  return newTaskList;
+};
+
 export const TaskProvider = ({ children }) => {
   const [task, setTask] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +26,9 @@ export const TaskProvider = ({ children }) => {
 
   const addTask = (task) => setTaskList(addTaskToList(task, taskList));
 
-  const value = { task, isOpen, setIsOpen, addTask, taskList };
+  const removeTask = (id) => setTaskList(removeTaskToList(id, taskList));
+
+  const value = { task, isOpen, setIsOpen, addTask, taskList, removeTask };
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };
