@@ -7,26 +7,28 @@ import { TaskContext } from "../../context/task.context";
 
 const ModalAddTask = (props) => {
   const [name, setName] = useState("");
-  const [id, setId] = useState(null);
   const [open, setOpen] = useState(true);
   const cancelButtonRef = useRef(null);
 
-  const { addTask, setIsOpen, currentTask } = useContext(TaskContext);
+  const { addTask, setIsOpen, currentTask, updateTaskList } = useContext(TaskContext);
 
   useEffect(() => {
     if (currentTask) {
       // ACA TENGO EL TASK A EDITAR, TENGO QUE ENVIARLO AL CONTEXT A EDITAR EL TASK LIST
       setName(currentTask.name);
-      setId(currentTask.id);
     }
   }, [currentTask]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsOpen(false);
-    console.log(id);
     const task = name;
-    addTask({ name: task });
+    if (currentTask) {
+      console.log(currentTask, task);
+      updateTaskList(currentTask);
+    } else {
+      addTask({ name: task });
+    }
   };
 
   return (
