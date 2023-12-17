@@ -11,11 +11,21 @@ export const TaskContext = createContext({
 });
 
 export const addTaskToList = (task, taskList) => {
+  console.log(task);
   return [...taskList, { ...task, id: taskList.length + 1, date: getCurrentDate() }];
 };
 
 export const removeTaskToList = (id, taskList) => {
   const newTaskList = taskList.filter((el) => el.id != id);
+  return newTaskList;
+};
+
+export const editTaskList = (task, taskList) => {
+  const newTaskList = taskList.map((element) => {
+    if (element.id == task.id) {
+      element.name = task.name;
+    }
+  });
   return newTaskList;
 };
 
@@ -28,7 +38,8 @@ export const TaskProvider = ({ children }) => {
 
   const removeTask = (id) => setTaskList(removeTaskToList(id, taskList));
 
-  const value = { task, isOpen, setIsOpen, addTask, taskList, removeTask };
-
+  const editTask = (id) => setTaskList(editTaskList(id, taskList));
+  console.log(isOpen);
+  const value = { task, isOpen, setIsOpen, addTask, taskList, removeTask, editTask };
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };

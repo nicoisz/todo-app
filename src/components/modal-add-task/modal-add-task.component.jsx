@@ -5,7 +5,7 @@ import CustomInput from "../input/input.component";
 import { useContext } from "react";
 import { TaskContext } from "../../context/task.context";
 
-const ModalAddTask = () => {
+const ModalAddTask = (props) => {
   const [name, setName] = useState("");
   const [open, setOpen] = useState(true);
   const cancelButtonRef = useRef(null);
@@ -13,11 +13,15 @@ const ModalAddTask = () => {
   const { addTask, setIsOpen } = useContext(TaskContext);
 
   const handleSubmit = (event) => {
+    console.log(event);
+
     event.preventDefault();
     setIsOpen(false);
     const task = event.target[0].value;
     addTask({ name: task });
   };
+
+  console.log(props);
 
   return (
     <Transition.Root show={open} as={Fragment}>

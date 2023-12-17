@@ -8,14 +8,14 @@ import { TaskContext } from "../../context/task.context";
 
 const Home = () => {
   const { setIsOpen, isOpen } = useContext(TaskContext);
-
+  console.log(isOpen);
   const handlerClick = (event) => {
     event.preventDefault();
     setIsOpen(true);
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full h-screen bg-slate-800">
       <div className="p-4 place-items-center rounded-lg m-14">
         <div className=" mb-6">
           <button
