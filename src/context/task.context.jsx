@@ -21,6 +21,7 @@ export const removeTaskToList = (id, taskList) => {
 };
 
 export const editTaskList = (task, taskList) => {
+  console.log(task, taskList);
   const newTaskList = taskList.map((element) => {
     if (element.id == task.id) {
       element.name = task.name;
@@ -31,6 +32,7 @@ export const editTaskList = (task, taskList) => {
 
 export const TaskProvider = ({ children }) => {
   const [task, setTask] = useState(null);
+  const [currentTask, setCurrenTask] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [taskList, setTaskList] = useState([]);
 
@@ -38,8 +40,8 @@ export const TaskProvider = ({ children }) => {
 
   const removeTask = (id) => setTaskList(removeTaskToList(id, taskList));
 
-  const editTask = (id) => setTaskList(editTaskList(id, taskList));
-  console.log(isOpen);
-  const value = { task, isOpen, setIsOpen, addTask, taskList, removeTask, editTask };
+  const taskToEdit = (task) => setCurrenTask(task);
+
+  const value = { task, isOpen, setIsOpen, addTask, taskList, removeTask, taskToEdit, currentTask };
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };

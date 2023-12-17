@@ -8,7 +8,6 @@ import { TaskContext } from "../../context/task.context";
 
 const Home = () => {
   const { setIsOpen, isOpen } = useContext(TaskContext);
-  console.log(isOpen);
   const handlerClick = (event) => {
     event.preventDefault();
     setIsOpen(true);

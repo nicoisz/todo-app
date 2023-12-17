@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import CustomInput from "../input/input.component";
@@ -10,18 +10,18 @@ const ModalAddTask = (props) => {
   const [open, setOpen] = useState(true);
   const cancelButtonRef = useRef(null);
 
-  const { addTask, setIsOpen } = useContext(TaskContext);
+  const { addTask, setIsOpen, currentTask } = useContext(TaskContext);
+
+  useEffect(() => {
+    currentTask ? setName(currentTask.name) : "";
+  }, [currentTask]);
 
   const handleSubmit = (event) => {
-    console.log(event);
-
     event.preventDefault();
     setIsOpen(false);
     const task = event.target[0].value;
     addTask({ name: task });
   };
-
-  console.log(props);
 
   return (
     <Transition.Root show={open} as={Fragment}>
