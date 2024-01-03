@@ -45,7 +45,7 @@ export const TaskProvider = ({ children }) => {
   const updateTaskList = (id) => setTaskList(updateList(currentTask));
 
   const taskToEdit = (task) => setCurrenTask(task);
-
+  console.log("TaskProvider", isOpenDelete);
   const value = {
     task,
     isOpenEdit,

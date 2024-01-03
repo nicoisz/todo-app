@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
 
 const StackedList = () => {
-  const { taskList, removeTask, setIsOpenEdit, isOpenEdit, taskToEdit } = useContext(TaskContext);
+  const { taskList, removeTask, setIsOpenEdit, isOpenEdit, taskToEdit, setIsOpenDelete } = useContext(TaskContext);
   const [done, setDone] = useState(false);
 
   const handleClick = (id) => {
@@ -12,7 +12,9 @@ const StackedList = () => {
   };
 
   const handleClickDelete = (id) => {
-    removeTask(id);
+    console.log("handleClickDelete", id);
+    setIsOpenDelete(true);
+    // removeTask(id);
   };
 
   const handleClickEdit = (task) => {
