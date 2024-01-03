@@ -6,8 +6,11 @@ export const TaskContext = createContext({
   setTask: () => null,
   taskList: [],
   setTaskList: () => null,
-  isOpen: false,
-  setIsOpen: () => false,
+  isOpenEdit: false,
+  setIsOpenEdit: () => false,
+
+  isOpenDelete: false,
+  setIsOpenDelete: () => false,
 });
 
 export const addTaskToList = (task, taskList) => {
@@ -32,7 +35,8 @@ export const updateList = (task, taskList) => {
 export const TaskProvider = ({ children }) => {
   const [task, setTask] = useState(null);
   const [currentTask, setCurrenTask] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
   const [taskList, setTaskList] = useState([]);
 
   const addTask = (task) => setTaskList(addTaskToList(task, taskList));
@@ -42,6 +46,18 @@ export const TaskProvider = ({ children }) => {
 
   const taskToEdit = (task) => setCurrenTask(task);
 
-  const value = { task, isOpen, setIsOpen, addTask, taskList, removeTask, taskToEdit, currentTask, updateTaskList };
+  const value = {
+    task,
+    isOpenEdit,
+    setIsOpenEdit,
+    isOpenDelete,
+    setIsOpenDelete,
+    addTask,
+    taskList,
+    removeTask,
+    taskToEdit,
+    currentTask,
+    updateTaskList,
+  };
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
 };

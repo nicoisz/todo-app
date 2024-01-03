@@ -1,41 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import CustomInput from "../input/input.component";
-import { useContext } from "react";
-import { TaskContext } from "../../context/task.context";
-
-const ModalAddTask = (props) => {
-  const [name, setName] = useState("");
-  const [open, setOpen] = useState(true);
-  const cancelButtonRef = useRef(null);
-
-  const { addTask, setIsOpenEdit, currentTask, updateTaskList, isOpenEdit } = useContext(TaskContext);
-
-  useEffect(() => {
-    if (currentTask) {
-      // ACA TENGO EL TASK A EDITAR, TENGO QUE ENVIARLO AL CONTEXT A EDITAR EL TASK LIST
-      setName(currentTask.name);
-    }
-  }, [currentTask]);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setIsOpenEdit(false);
-    const task = name;
-    if (currentTask) {
-      console.log(currentTask, task);
-      updateTaskList(currentTask);
-    } else {
-      addTask({ name: task });
-    }
-  };
-
-  const handleCancel = () => {
-    console.log("handleCancel", isOpenEdit);
-    setIsOpenEdit(false);
-  };
-
+const modalDelete = () => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
@@ -113,4 +76,4 @@ const ModalAddTask = (props) => {
   );
 };
 
-export default ModalAddTask;
+export default modalDelete;

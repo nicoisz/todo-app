@@ -7,10 +7,10 @@ import { useContext } from "react";
 import { TaskContext } from "../../context/task.context";
 
 const Home = () => {
-  const { setIsOpen, isOpen } = useContext(TaskContext);
+  const { setIsOpenEdit, isOpenEdit } = useContext(TaskContext);
   const handlerClick = (event) => {
     event.preventDefault();
-    setIsOpen(true);
+    setIsOpenEdit(true);
   };
 
   return (
@@ -24,7 +24,7 @@ const Home = () => {
             Add Task
           </button>
         </div>
-        {isOpen && <ModalAddTask></ModalAddTask>}
+        {isOpenEdit && <ModalAddTask></ModalAddTask>}
       </div>
 
       <div className="m-14">
