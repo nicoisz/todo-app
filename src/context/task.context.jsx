@@ -23,7 +23,6 @@ export const removeTaskToList = (id, taskList) => {
 };
 
 export const updateList = (task, taskList) => {
-  console.log(task, taskList);
   const newTaskList = taskList.map((element) => {
     if (element.id == task.id) {
       element.name = task.name;
@@ -44,8 +43,6 @@ export const TaskProvider = ({ children }) => {
   const removeTask = (id) => setTaskList(removeTaskToList(id, taskList));
   const updateTaskList = (id) => setTaskList(updateList(currentTask));
 
-  //const taskToEdit = (task) => setCurrenTask(task);
-  console.log("TaskProvider", isOpenDelete);
   const value = {
     task,
     isOpenEdit,

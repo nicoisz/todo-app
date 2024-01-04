@@ -24,7 +24,6 @@ const ModalAddTask = (props) => {
     setIsOpenEdit(false);
     const task = name;
     if (currentTask) {
-      console.log(currentTask, task);
       updateTaskList(currentTask);
     } else {
       addTask({ name: task });
@@ -32,7 +31,6 @@ const ModalAddTask = (props) => {
   };
 
   const handleCancel = () => {
-    console.log("handleCancel", isOpenEdit);
     setIsOpenEdit(false);
   };
 

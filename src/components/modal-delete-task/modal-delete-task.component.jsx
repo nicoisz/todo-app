@@ -10,10 +10,8 @@ const ModalDeleteTask = (props) => {
   const [open, setOpen] = useState(true);
 
   const { setIsOpenDelete, isOpenDelete, removeTask, currentTask } = useContext(TaskContext);
-  console.log(" modalDeleteTask isOpenDelete", isOpenDelete);
 
   const handleCancel = () => {
-    console.log("handleCancel", isOpenDelete);
     setIsOpenDelete(false);
   };
 
