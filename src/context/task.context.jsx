@@ -44,7 +44,7 @@ export const TaskProvider = ({ children }) => {
   const removeTask = (id) => setTaskList(removeTaskToList(id, taskList));
   const updateTaskList = (id) => setTaskList(updateList(currentTask));
 
-  const taskToEdit = (task) => setCurrenTask(task);
+  //const taskToEdit = (task) => setCurrenTask(task);
   console.log("TaskProvider", isOpenDelete);
   const value = {
     task,
@@ -55,7 +55,7 @@ export const TaskProvider = ({ children }) => {
     addTask,
     taskList,
     removeTask,
-    taskToEdit,
+    setCurrenTask,
     currentTask,
     updateTaskList,
   };

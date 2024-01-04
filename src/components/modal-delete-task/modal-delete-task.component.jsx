@@ -9,13 +9,19 @@ const ModalDeleteTask = (props) => {
   const cancelButtonRef = useRef(null);
   const [open, setOpen] = useState(true);
 
-  const { setIsOpenDelete, isOpenDelete } = useContext(TaskContext);
+  const { setIsOpenDelete, isOpenDelete, removeTask, currentTask } = useContext(TaskContext);
   console.log(" modalDeleteTask isOpenDelete", isOpenDelete);
 
   const handleCancel = () => {
     console.log("handleCancel", isOpenDelete);
     setIsOpenDelete(false);
   };
+
+  const handleDelete = () => {
+    removeTask(currentTask.id);
+    setIsOpenDelete(false);
+  };
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
@@ -53,20 +59,24 @@ const ModalDeleteTask = (props) => {
                         Let's Delete a task
                       </Dialog.Title>
                     </div>
+                    <span>{currentTask.name}</span>
                   </div>
-                </div>
-                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button className="inline-flex w-full justify-center rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">
-                    Add Task
-                  </button>
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => handleCancel()}
-                    ref={cancelButtonRef}
-                  >
-                    Cancel
-                  </button>
+                  <div className=" px-4 py-3 sm:flex sm:justify-center sm:px-6">
+                    <button
+                      className="inline-flex w-full justify-center mr-5 rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                      onClick={() => handleDelete()}
+                    >
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      className="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                      onClick={() => handleCancel()}
+                      ref={cancelButtonRef}
+                    >
+                      No
+                    </button>
+                  </div>
                 </div>
               </Dialog.Panel>
             </Transition.Child>

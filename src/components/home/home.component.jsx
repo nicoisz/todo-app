@@ -8,13 +8,13 @@ import { useContext } from "react";
 import { TaskContext } from "../../context/task.context";
 
 const Home = () => {
-  const { setIsOpenEdit, isOpenEdit, isOpenDelete } = useContext(TaskContext);
+  const { setIsOpenEdit, isOpenEdit, isOpenDelete, setCurrenTask } = useContext(TaskContext);
   const handlerClick = (event) => {
     event.preventDefault();
+    setCurrenTask(null);
     setIsOpenEdit(true);
   };
 
-  console.log("home", isOpenDelete);
   return (
     <div className="w-full h-screen bg-slate-800">
       <div className="p-4 place-items-center rounded-lg m-14">
