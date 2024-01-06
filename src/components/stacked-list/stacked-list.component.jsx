@@ -16,6 +16,8 @@ const StackedList = () => {
     setCurrenTask(task);
   };
 
+  console.log(taskList);
+
   return (
     <div>
       <ul role="list" className="border-3 z-10 ">

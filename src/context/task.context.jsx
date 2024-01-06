@@ -22,15 +22,6 @@ export const removeTaskToList = (id, taskList) => {
   return newTaskList;
 };
 
-export const updateList = (task, taskList) => {
-  const newTaskList = taskList.map((element) => {
-    if (element.id == task.id) {
-      element.name = task.name;
-    }
-  });
-  return newTaskList;
-};
-
 export const TaskProvider = ({ children }) => {
   const [task, setTask] = useState(null);
   const [currentTask, setCurrenTask] = useState(null);
@@ -41,7 +32,8 @@ export const TaskProvider = ({ children }) => {
   const addTask = (task) => setTaskList(addTaskToList(task, taskList));
 
   const removeTask = (id) => setTaskList(removeTaskToList(id, taskList));
-  const updateTaskList = (id) => setTaskList(updateList(currentTask));
+  console.log(taskList);
+  const updateTaskList = (id) => setTaskList(taskList);
 
   const value = {
     task,

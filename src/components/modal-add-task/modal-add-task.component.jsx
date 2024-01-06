@@ -24,6 +24,9 @@ const ModalAddTask = (props) => {
     setIsOpenEdit(false);
     const task = name;
     if (currentTask) {
+      currentTask.name = event.target[0].value;
+      console.log(currentTask);
+
       updateTaskList(currentTask);
     } else {
       addTask({ name: task });
