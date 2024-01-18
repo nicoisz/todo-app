@@ -4,6 +4,7 @@ import { useState } from "react";
 import { TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
 
 const StackedList = () => {
+  const [isTaskDone, setIsTaskDone] = useState(false);
   const { taskList, setIsOpenEdit, setCurrenTask, setIsOpenDelete, setIsDone } = useContext(TaskContext);
   console.log(taskList);
   const handleClickDelete = (task) => {
@@ -18,6 +19,7 @@ const StackedList = () => {
 
   const handleDoneClick = (id) => {
     console.log("handleDoneClick", id);
+    setIsTaskDone(!isTaskDone);
     setIsDone(id);
   };
 
@@ -26,34 +28,28 @@ const StackedList = () => {
       <ul role="list" className="border-3 z-10 ">
         {taskList.map((task) => (
           <li key={task.id} className="flex justify-around gap-x-6 py-5 border bg-slate-300 ">
-            <div className="flex min-w-0 gap-x-4 border-red-400 border-dotted" onClick={() => handleDoneClick(task.id)}>
+            <div className="flex min-w-0 gap-x-4 border-red-600 border-dotted" onClick={() => handleDoneClick(task.id)}>
               <div className="min-w-0 flex-auto">
                 <p className="text-sm font-semibold leading-6 text-gray-900">{task.name}</p>
+                {task.done ? <h1>Welcome back!</h1> : <h1>Please log in.</h1>}
                 <p className="mt-1 truncate text-xs leading-5 text-gray-500">{task.date}</p>
               </div>
             </div>
             <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-              <p className="text-sm leading-6 text-gray-900">{task.name.role}</p>
-              {task.name.lastSeen ? (
-                <p className="mt-1 text-xs leading-5 text-gray-500">
-                  Last seen <time dateTime={task.name}>{task.name}</time>
-                </p>
-              ) : (
-                <div className="mt-1 flex items-center gap-x-1.5">
-                  <button
-                    onClick={() => handleClickEdit(task)}
-                    className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                  >
-                    <PencilIcon className="h-6 w-6 text-gray-600" aria-hidden="true" />
-                  </button>
-                  <button
-                    onClick={() => handleClickDelete(task)}
-                    className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                  >
-                    <TrashIcon className="h-6 w-6 text-gray-600" aria-hidden="true" />
-                  </button>
-                </div>
-              )}
+              <div className="mt-1 flex items-center gap-x-1.5">
+                <button
+                  onClick={() => handleClickEdit(task)}
+                  className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                >
+                  <PencilIcon className="h-6 w-6 text-gray-600" aria-hidden="true" />
+                </button>
+                <button
+                  onClick={() => handleClickDelete(task)}
+                  className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                >
+                  <TrashIcon className="h-6 w-6 text-gray-600" aria-hidden="true" />
+                </button>
+              </div>
             </div>
           </li>
         ))}
