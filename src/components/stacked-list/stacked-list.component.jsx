@@ -4,8 +4,8 @@ import { useState } from "react";
 import { TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
 
 const StackedList = () => {
-  const { taskList, setIsOpenEdit, setCurrenTask, setIsOpenDelete } = useContext(TaskContext);
-
+  const { taskList, setIsOpenEdit, setCurrenTask, setIsOpenDelete, setIsDone } = useContext(TaskContext);
+  console.log(taskList);
   const handleClickDelete = (task) => {
     setIsOpenDelete(true);
     setCurrenTask(task);
@@ -16,14 +16,17 @@ const StackedList = () => {
     setCurrenTask(task);
   };
 
-  console.log(taskList);
+  const handleDoneClick = (id) => {
+    console.log("handleDoneClick", id);
+    setIsDone(id);
+  };
 
   return (
     <div>
       <ul role="list" className="border-3 z-10 ">
         {taskList.map((task) => (
           <li key={task.id} className="flex justify-around gap-x-6 py-5 border bg-slate-300 ">
-            <div className="flex min-w-0 gap-x-4">
+            <div className="flex min-w-0 gap-x-4 border-red-400 border-dotted" onClick={() => handleDoneClick(task.id)}>
               <div className="min-w-0 flex-auto">
                 <p className="text-sm font-semibold leading-6 text-gray-900">{task.name}</p>
                 <p className="mt-1 truncate text-xs leading-5 text-gray-500">{task.date}</p>
