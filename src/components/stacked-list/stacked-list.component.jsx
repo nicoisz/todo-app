@@ -24,12 +24,12 @@ const StackedList = () => {
   };
 
   return (
-    <div className="flex flex-row justify-around flex-wrap">
-      <div className="w-full">
-        <h5 className="bg-blue-900">not done</h5>
+    <div className="grid grid-flow-col gap-3">
+      <div className="bg-red-100 col-span-1">
+        <h5 className="">not done</h5>
         <ul role="list" className="border-3 z-10 border">
           {taskList.map((task) =>
-            task.done ? (
+            task.done == false ? (
               <li key={task.id} className="flex justify-around gap-x-6 py-5 border bg-slate-300 ">
                 <div
                   className="flex min-w-0 gap-x-4 border-red-600 border-dotted"
@@ -63,11 +63,11 @@ const StackedList = () => {
           )}
         </ul>
       </div>
-      <div className="w-full">
+      <div className="bg-green-100 col-span-1">
         <h5> done</h5>
         <ul role="list" className="border-3 z-10">
           {taskList.map((task) =>
-            task.done == false ? (
+            task.done ? (
               <li key={task.id} className="flex justify-around gap-x-6 py-5 border bg-slate-300 ">
                 <div
                   className="flex min-w-0 gap-x-4 border-red-600 border-dotted"
