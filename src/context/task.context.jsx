@@ -23,7 +23,6 @@ export const removeTaskToList = (id, taskList) => {
 
 export const updateDoneList = (id, taskList) => {
   taskList.forEach((element) => {
-    console.log(element);
     if (element.id == id) {
       element.done = !element.done;
     }

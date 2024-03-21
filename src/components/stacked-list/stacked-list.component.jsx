@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { TaskContext } from "../../context/task.context";
 import { useState } from "react";
 import { TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
+import "../stacked-list/stacked-list.style.css";
 
 const StackedList = () => {
   const [isTaskDone, setIsTaskDone] = useState(false);
@@ -18,7 +19,6 @@ const StackedList = () => {
   };
 
   const handleDoneClick = (id) => {
-    console.log("handleDoneClick", id);
     setIsTaskDone(!isTaskDone);
     setIsDone(id);
   };
@@ -28,14 +28,19 @@ const StackedList = () => {
       <div className="bg-red-100 col-span-1">
         <ul role="list" className="border-3 z-10 border">
           {taskList.map((task) => (
-            <li key={task.id} className="flex justify-around gap-x-6 py-5 border bg-slate-300 ">
-              <div
-                className="flex min-w-0 gap-x-4 border-red-600 border-dotted"
-                onClick={() => handleDoneClick(task.id)}
-              >
+            <li
+              key={task.id}
+              className="flex justify-around gap-x-6 py-5 border bg-orange-400 w-50 "
+              onClick={() => handleDoneClick(task.id)}
+            >
+              <div className="flex min-w-0 gap-x-4 border-red-600 border-dotted bg-slate-600">
+                <label className="container">
+                  <input type="checkbox" id={task.id} checked={task.done} />
+                  <div className="checkmark"></div>
+                </label>
                 <div className="min-w-0 flex-auto">
                   <p className="text-sm font-semibold leading-6 text-gray-900">
-                    {task.done ? task.name : <del>{task.name}</del>}
+                    {task.done ? <del>{task.name}</del> : task.name}
                   </p>
                   <p className="mt-1 truncate text-xs leading-5 text-gray-500">{task.date}</p>
                 </div>
